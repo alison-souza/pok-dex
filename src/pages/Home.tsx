@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { PokemonCard } from "../components/PokemonCard";
 import { api } from "../services/api";
+import { Footer } from "../components/Footer";
 
 type ApiPokemon = { name: string; url: string };
 
@@ -86,12 +87,10 @@ export function Home() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
-        {/* HEADER CENTRALIZADO */}
         <header className="flex flex-col items-center justify-center mb-6 gap-4">
           <h1 className="text-4xl font-bold neon-text text-center">Pokedéx</h1>
         </header>
 
-        {/* SEARCH + FILTER CENTRALIZADOS */}
         <div className="flex flex-col items-center gap-4 mb-6">
           <input
             className="input-futuristic px-4 py-2 rounded-xl w-full max-w-md text-center"
@@ -120,7 +119,6 @@ export function Home() {
           </div>
         </div>
 
-        {/* GRID */}
         {loading ? (
           <div className="text-center text-cyan-300 py-10">
             Carregando Pokémons…
@@ -137,6 +135,9 @@ export function Home() {
             })}
           </div>
         )}
+
+        {/* FOOTER */}
+        <Footer />
       </div>
     </div>
   );

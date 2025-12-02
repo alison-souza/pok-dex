@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Footer } from "../components/Footer";
 
 export function PokemonDetails() {
   const { id } = useParams();
@@ -23,12 +24,10 @@ export function PokemonDetails() {
     load();
   }, [id]);
 
-  // Depois que species é carregado, traduz curiosidade automaticamente
   useEffect(() => {
     async function translateCuriosity() {
       if (!species) return;
 
-      // Curiosidade original
       const flavor =
         species.flavor_text_entries.find(
           (entry: any) => entry.language.name === "pt"
@@ -41,13 +40,11 @@ export function PokemonDetails() {
         ? flavor.flavor_text.replace(/\f/g, " ")
         : "Nenhuma curiosidade encontrada.";
 
-      // Se já estiver em PT-BR, só salva
       if (flavor?.language.name === "pt") {
         setTranslatedCuriosity(curiosity);
         return;
       }
 
-      // Traduz usando API MyMemory
       try {
         const response = await fetch(
           `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
@@ -72,7 +69,6 @@ export function PokemonDetails() {
     return <p className="text-center mt-20 text-gray-300">Carregando...</p>;
   }
 
-  // Região padrão para todos os 151 iniciais
   const region = "Kanto";
 
   return (
@@ -144,6 +140,9 @@ export function PokemonDetails() {
           </div>
         </div>
       </div>
+
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 }
