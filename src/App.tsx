@@ -10,7 +10,7 @@ export const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pokemon/:name" element={<Detail />} />
+          <Route path="/pokemon/:name" element={<PokemonDetails />} />
         </Routes>
       </BrowserRouter>
     </FavoritesProvider>
